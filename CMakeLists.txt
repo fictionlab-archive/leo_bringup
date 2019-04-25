@@ -4,3 +4,11 @@ project(leo_bringup)
 find_package(catkin)
 
 catkin_package()
+
+install(DIRECTORY launch/
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+    PATTERN ".svn" EXCLUDE)
+
+catkin_install_python(PROGRAMS 
+    scripts/serial_bridge
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
