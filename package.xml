@@ -11,5 +11,6 @@
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>web_video_server</exec_depend>
   <exec_depend>rosbridge_server</exec_depend>
+  <exec_depend>raspicam_node</exec_depend>
 
 </package>
