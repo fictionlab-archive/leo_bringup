@@ -6,6 +6,8 @@
 
     <node name="rosbridge_server" pkg="rosbridge_server" type="rosbridge_websocket"/>
 
+    <node name="leo_system" pkg="leo_bringup" type="leo_system"/>
+
     <node type="raspicam_node" pkg="raspicam_node" name="raspicam_node">
 
         <param name="width" value="640"/>

@@ -11,4 +11,5 @@ install(DIRECTORY launch/
 
 catkin_install_python(PROGRAMS 
     scripts/serial_bridge
+    scripts/leo_system
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
