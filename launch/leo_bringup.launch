@@ -4,7 +4,9 @@
     
     <node name="serial_bridge" pkg="leo_bringup" type="serial_bridge"/>
 
-    <node name="rosbridge_server" pkg="rosbridge_server" type="rosbridge_websocket"/>
+    <node name="rosbridge_server" pkg="rosbridge_server" type="rosbridge_websocket">
+        <param name="unregister_timeout" value="86400"/>
+    </node>
 
     <node name="leo_system" pkg="leo_bringup" type="leo_system"/>
 
