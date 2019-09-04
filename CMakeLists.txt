@@ -9,7 +9,6 @@ install(DIRECTORY launch/
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
     PATTERN ".svn" EXCLUDE)
 
-catkin_install_python(PROGRAMS 
-    scripts/serial_bridge
+catkin_install_python(PROGRAMS
     scripts/leo_system
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
