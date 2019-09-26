@@ -1,14 +1,20 @@
 <launch>
 
+    <arg name="model" default="$(find leo_description)/urdf/leo.urdf.xacro"/>
+    
+    <param name="robot_description" command="xacro --inorder $(arg model)" />
+    
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
     <node name="web_video_server" pkg="web_video_server" type="web_video_server"/>
 
     <node name="rosbridge_server" pkg="rosbridge_server" type="rosbridge_websocket">
         <param name="unregister_timeout" value="86400"/>
     </node>
 
-    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" respawn="true">
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" respawn="true" launch-prefix="nice -n -20">
         <param name="port" value="/dev/serial0"/>
-        <param name="baud" value="500000"/>
+        <param name="baud" value="250000"/>
     </node>
 
     <node name="leo_system" pkg="leo_bringup" type="leo_system"/>
