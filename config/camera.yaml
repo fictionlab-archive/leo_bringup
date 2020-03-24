@@ -1,0 +1,19 @@
+width: 640
+height: 480
+quality: 15
+framerate: 30
+
+contrast: -4
+sharpness: 0
+brightness: 50
+saturation: 10
+ISO: 500
+exposure_compensation: 0
+video_stabilisation: false
+vFlip: false
+hFlip: false
+shutter_speed: 0
+zoom: 1.0
+
+exposure: "auto"
+awb_mode: "auto"

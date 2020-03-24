@@ -1,6 +1,10 @@
 <launch>
 
-    <arg name="upload_description" default="true"/>    
+    <arg name="upload_description" default="true"/>
+    <arg name="motors_model" default="$(optenv LEO_MOTORS buehler)"/>
+
+    <rosparam command="load" file="$(find leo_bringup)/config/core2.yaml"/>
+    <rosparam command="load" file="$(find leo_bringup)/config/motors/$(arg motors_model).yaml"/>
     
     <param if="$(arg upload_description)" name="robot_description" 
         command="xacro --inorder $(find leo_description)/urdf/leo.urdf.xacro" />
@@ -21,19 +25,13 @@
     <node name="leo_system" pkg="leo_bringup" type="leo_system"/>
 
     <node type="raspicam_node" pkg="raspicam_node" name="raspicam_node">
-
-        <param name="width" value="640"/>
-        <param name="height" value="480"/>
-        <param name="quality" value="15"/>
-        <param name="framerate" value="30"/>
+        <rosparam command="load" file="$(find leo_bringup)/config/camera.yaml"/>
 
         <param name="private_topics" value="false"/>
-
         <param name="camera_frame_id" value="camera_frame"/>
         <param name="enable_raw" value="true"/>
         <param name="enable_imv" value="false"/>
         <param name="camera_id" value="0"/>
-
         <param name="camera_name" value="leo_camera"/>
         <param name="camera_info_url" value="package://leo_bringup/camera_info/leo_camera.yaml"/>
 
