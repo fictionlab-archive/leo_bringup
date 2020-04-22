@@ -1,43 +1,60 @@
 <launch>
 
-    <arg name="upload_description" default="true"/>
-    <arg name="motors_model" default="$(optenv LEO_MOTORS buehler)"/>
+  <arg name="upload_description" default="true"/>
+  <arg name="motors_model" default="$(optenv LEO_MOTORS buehler)"/>
 
-    <rosparam command="load" file="$(find leo_bringup)/config/core2.yaml"/>
-    <rosparam command="load" file="$(find leo_bringup)/config/motors/$(arg motors_model).yaml"/>
+  <rosparam command="load" file="$(find leo_bringup)/config/core2.yaml"/>
+  <rosparam command="load"
+            file="$(find leo_bringup)/config/motors/$(arg motors_model).yaml"/>
     
-    <param if="$(arg upload_description)" name="robot_description" 
-        command="xacro --inorder $(find leo_description)/urdf/leo.urdf.xacro" />
-    
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+  <param if="$(arg upload_description)"
+         name="robot_description" 
+         command="xacro --inorder $(find leo_description)/urdf/leo.urdf.xacro"/>
 
-    <node name="web_video_server" pkg="web_video_server" type="web_video_server"/>
+  <node name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        type="state_publisher"/>
 
-    <node name="rosbridge_server" pkg="rosbridge_server" type="rosbridge_websocket">
-        <param name="unregister_timeout" value="86400"/>
-    </node>
+  <node name="web_video_server"
+        pkg="web_video_server"
+        type="web_video_server"/>
 
-    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" respawn="true" launch-prefix="nice -n -20">
-        <param name="port" value="/dev/serial0"/>
-        <param name="baud" value="250000"/>
-    </node>
+  <node name="rosbridge_server"
+        pkg="rosbridge_server"
+        type="rosbridge_websocket">
+    <param name="unregister_timeout" value="86400"/>
+  </node>
 
-    <node name="leo_system" pkg="leo_bringup" type="leo_system"/>
+  <node name="serial_node"
+        pkg="rosserial_python"
+        type="serial_node.py"
+        respawn="true"
+        launch-prefix="nice -n -20">
+    <param name="port" value="/dev/serial0"/>
+    <param name="baud" value="250000"/>
+  </node>
 
-    <node type="raspicam_node" pkg="raspicam_node" name="raspicam_node">
-        <rosparam command="load" file="$(find leo_bringup)/config/camera.yaml"/>
+  <node name="leo_system"
+        pkg="leo_bringup"
+        type="leo_system"/>
 
-        <param name="private_topics" value="false"/>
-        <param name="camera_frame_id" value="camera_frame"/>
-        <param name="enable_raw" value="true"/>
-        <param name="enable_imv" value="false"/>
-        <param name="camera_id" value="0"/>
-        <param name="camera_name" value="leo_camera"/>
-        <param name="camera_info_url" value="package://leo_bringup/camera_info/leo_camera.yaml"/>
+  <node type="raspicam_node"
+        pkg="raspicam_node"
+        name="raspicam_node">
+    <rosparam command="load" file="$(find leo_bringup)/config/camera.yaml"/>
 
-        <remap from="image" to="camera/image_raw"/>
-        <remap from="image/compressed" to="camera/image_raw/compressed"/>
-        <remap from="camera_info" to="camera/camera_info"/>
-    </node>
+    <param name="private_topics"  value="false"/>
+    <param name="camera_frame_id" value="camera_frame"/>
+    <param name="enable_raw"      value="true"/>
+    <param name="enable_imv"      value="false"/>
+    <param name="camera_id"       value="0"/>
+    <param name="camera_name"     value="leo_camera"/>
+    <param name="camera_info_url" 
+           value="package://leo_bringup/camera_info/leo_camera.yaml"/>
+
+    <remap from="image"            to="camera/image_raw"/>
+    <remap from="image/compressed" to="camera/image_raw/compressed"/>
+    <remap from="camera_info"      to="camera/camera_info"/>
+  </node>
 
 </launch>
