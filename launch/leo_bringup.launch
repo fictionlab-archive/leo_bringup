@@ -15,6 +15,10 @@
         pkg="robot_state_publisher"
         type="state_publisher"/>
 
+  <node name="web_video_server"
+        pkg="web_video_server"
+        type="web_video_server"/>
+
   <node name="serial_node"
         pkg="rosserial_python"
         type="serial_node.py"
