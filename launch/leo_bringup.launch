@@ -44,7 +44,7 @@
     <rosparam command="load" file="$(find leo_bringup)/config/camera.yaml"/>
 
     <param name="private_topics"  value="false"/>
-    <param name="camera_frame_id" value="camera_frame"/>
+    <param name="camera_frame_id" value="camera_optical_frame"/>
     <param name="enable_raw"      value="true"/>
     <param name="enable_imv"      value="false"/>
     <param name="camera_id"       value="0"/>
