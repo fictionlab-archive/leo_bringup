@@ -4,21 +4,22 @@ Changelog for package leo_bringup
 
 Forthcoming
 -----------
+* Changed camera frame name to camera_optical_frame
 
 1.0.1 (2020-04-22)
 ------------------
-* Use relative topic names in leo_system node
-* change XML style
+* used relative topic names in leo_system node
 
 1.0.0 (2020-03-24)
 ------------------
-* add configuration files for camera and core2 firmware
-* fix leo_system shutdown command
+* fixed leo_system shutdown command
+* added configuration files for camera and core2 firmware
+* added motors_model argument to the launch file
 
 0.6.0 (2020-02-12)
 ------------------
-* add upload_description parameter
-* change camera frame_id to camera_frame
+* changed camera frame id to camera_frame
+* added upload_description argument to leo_bringup.launch file
 
 0.5.0 (2019-10-02)
 ------------------
