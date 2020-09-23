@@ -2,8 +2,8 @@
 Changelog for package leo_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.2 (2020-09-23)
+------------------
 * Changed camera frame name to camera_optical_frame
 
 1.0.1 (2020-04-22)
